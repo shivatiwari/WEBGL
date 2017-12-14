@@ -7,28 +7,32 @@ let halfHeight;
 let mycanvas;
 let color = 0;
 function setup() {
-	  mycanvas = createCanvas(innerWidth/2, innerHeight, WEBGL);
-    mycanvas.position(width/2,0);
-    halfWidth = width / 2;
-	  halfHeight = height / 2;
-    maxD = dist(0,0,halfWidth, halfHeight);
-    boxwidth = innerHeight/ 15;
-    Halfboxwidth = boxwidth / 2;
-}     
+	mycanvas = createCanvas(innerWidth/2, innerHeight, WEBGL);
+    	mycanvas.position(width/2,0);
+    	halfWidth = width / 2;
+	halfHeight = height / 2;
+   	maxD = dist(0,0,halfWidth, halfHeight);
+    	boxwidth = innerHeight/ 15;
+    	Halfboxwidth = boxwidth / 2;
+}    
 function draw() {
-  color ++;
+  	color ++;
 	background(255);
 	ambientLight(100);
 	pointLight(250,100,1200, (color%360), 25, 25);
 	ambientMaterial(255);
-  pointLight(250, (color%360),0, 0, (color%360), 25);
+    	pointLight(250, (color%360),0, 0, (color%360), 25);
 	ambientMaterial(255);
-  pointLight(250, 0, 0, 0, (color%360), 25);
+    	pointLight(250, 0, 0, 0, (color%360), 25);
 	ambientMaterial(255);
 	ortho(-width, width, -height, height, 0, width+height);
 	rotateX(atan(cos(QUARTER_PI)));
-	rotateY(QUARTER_PI);
 	rotateY(angle/10);
+    	if(mouseIsPressed)
+       	{
+        	rotateX(mouseY/100);
+        	rotateY(-mouseX/100);
+       	}
 	let offset = 0;
 	for(let z = 0; z < height; z += boxwidth)
 	{
